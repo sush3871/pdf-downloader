@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Downloader</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+<div class="container">
+    <div class="hero">
+        <h1>PDF Downloader</h1>
+        <p>Upload an Excel file containing PDF URLs and download them with live progress.</p>
+    </div>
+
+    <section class="card">
+        <div id="dropzone" class="dropzone">
+            <div class="upload-icon">↑</div>
+            <h2>Drop Excel file here</h2>
+            <p>or click to browse</p>
+            <input id="fileInput" type="file" accept=".xlsx,.xls" hidden>
+            <button id="browseBtn" class="btn secondary">Choose Excel</button>
+            <div id="fileName" class="file-name"></div>
+        </div>
+
+        <div id="message" class="message hidden"></div>
+
+        <div class="controls">
+            <button id="startBtn" class="btn primary" disabled>Start Download</button>
+            <button id="stopBtn" class="btn danger" disabled>Stop</button>
+            <button id="resumeBtn" class="btn warning" disabled>Resume</button>
+            <button id="zipBtn" class="btn success" disabled>Download All ZIP</button>
+        </div>
+    </section>
+
+    <section id="stats" class="stats">
+        <div class="stat"><span>Total</span><strong id="total">0</strong></div>
+        <div class="stat success-stat"><span>Success</span><strong id="success">0</strong></div>
+        <div class="stat failed-stat"><span>Failed</span><strong id="failed">0</strong></div>
+        <div class="stat"><span>Downloading</span><strong id="downloading">0</strong></div>
+        <div class="stat"><span>Pending</span><strong id="pending">0</strong></div>
+    </section>
+
+    <section class="card table-card">
+        <div class="table-head">
+            <h2>Download Status</h2>
+            <span id="jobStatus" class="badge">No job</span>
+        </div>
+
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>PDF Name</th>
+                        <th>Status</th>
+                        <th>Progress</th>
+                        <th>Error</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <tr>
+                        <td colspan="6" class="empty">Upload an Excel file to begin.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</div>
+
+<script src="/static/js/app.js"></script>
+</body>
+</html>
