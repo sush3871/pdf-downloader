@@ -2,8 +2,15 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = "change-this-secret-key-in-production"
-DEBUG = True
+import os
+
+SECRET_KEY = os.environ.get(
+    "DJANGO_SECRET_KEY",
+    "django-insecure-pdf-downloader-development-key"
+)
+
+DEBUG = os.environ.get("DJANGO_DEBUG", "False").lower() == "true"
+
 ALLOWED_HOSTS = ["*"]
 
 INSTALLED_APPS = [
@@ -34,6 +41,7 @@ WSGI_APPLICATION = "pdf_downloader.wsgi.application"
 DATABASES = {}
 
 STATIC_URL = "/static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_DIRS = [BASE_DIR / "static"]
 
 MEDIA_URL = "/downloads/"
